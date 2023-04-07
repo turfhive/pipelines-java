@@ -70,18 +70,15 @@ stages:
   jobs:
   - job: RunInContainer
     pool:
-    vmImage: $(vmImageName)
-
-  strategy:
-    matrix:
-      ubuntu16:
-        containerResource: u16
-      ubuntu18:
-        containerResource: u18
-      ubuntu20:
-        containerResource: u20
-
-  container: $[ variables['containerResource'] ]
-
-  steps:
-  - script: printenv
+      vmImage: $(vmImageName)
+    strategy:
+      matrix:
+        ubuntu16:
+          containerResource: u16
+        ubuntu18:
+          containerResource: u18
+        ubuntu20:
+          containerResource: u20
+    container: $[ variables['containerResource'] ]
+    steps:
+    - script: printenv
