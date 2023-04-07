@@ -51,7 +51,7 @@ resources:
     image: maven
 
 stages:
-- stage: Build
+- stage: aks
   displayName: Build stage
   jobs:
   - job: MavenPackageAndPublishArtifacts
@@ -75,7 +75,8 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
 
-- stage: B
+- stage: adf
+  dependsOn: []
   jobs:
   - job: B1
     steps:
@@ -84,7 +85,7 @@ stages:
     steps:
     - bash: echo "B2"
 
-- stage: A
+- stage: apim
   dependsOn: []
   jobs:
   - job: A1
@@ -94,7 +95,8 @@ stages:
     steps:
     - bash: echo "A2"
 
-- stage: C
+- stage: postgre
+  dependsOn: []
   jobs:
   - job: RunInContainer
     pool:
