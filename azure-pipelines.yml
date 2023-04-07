@@ -5,7 +5,16 @@
 
 trigger:
 - main
-
+parameters:
+- name: myNumber
+  type: number
+  default: 2
+  values:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 16
 variables:
 
   # Agent VM image name
