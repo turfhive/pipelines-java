@@ -8,6 +8,15 @@ trigger:
 
 variables:
 
+  # Azure Resource Manager connection created during pipeline creation
+  azureSubscription: 'db65d4bb-a5e8-41e7-9096-e52359cff748'
+
+  # Web app name
+  webAppName: 'WebAppNameLinux'
+
+  # Environment name
+  environmentName: 'WebAppEnv'
+
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
@@ -35,22 +44,3 @@ stages:
 
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
-
-- stage: B
-  jobs:
-  - job: B1
-    steps:
-    - bash: echo "B1"
-  - job: B2
-    steps:
-    - bash: echo "B2"
-
-- stage: A
-  dependsOn: []
-  jobs:
-  - job: A1
-    steps:
-    - bash: echo "A1"
-  - job: A2
-    steps:
-    - bash: echo "A2"
