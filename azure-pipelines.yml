@@ -28,6 +28,12 @@ parameters:
       one: apple
       two: pear
       count: 3
+- name: myMultiString
+  type: string
+  default: default
+  values:
+  - default
+  - ubuntu
 variables:
 
   # Agent VM image name
