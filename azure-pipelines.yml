@@ -11,6 +11,17 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
+resources:
+  containers:
+  - container: u16
+    image: ubuntu:16.04
+
+  - container: u18
+    image: ubuntu:18.04
+
+  - container: u20
+    image: ubuntu:20.04
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -54,3 +65,23 @@ stages:
   - job: A2
     steps:
     - bash: echo "A2"
+
+- stage: C
+  jobs:
+  - job: RunInContainer
+    pool:
+    vmImage: $(vmImageName)
+
+  strategy:
+    matrix:
+      ubuntu16:
+        containerResource: u16
+      ubuntu18:
+        containerResource: u18
+      ubuntu20:
+        containerResource: u20
+
+  container: $[ variables['containerResource'] ]
+
+  steps:
+  - script: printenv
