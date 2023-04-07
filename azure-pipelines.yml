@@ -6,6 +6,13 @@
 trigger:
 - main
 parameters:
+- name: listOfFruits
+  type: object
+  default:
+  - fruitName: 'apple'
+    colors: ['red','green']
+  - fruitName: 'lemon'
+    colors: ['yellow']
 - name: myNumber
   type: number
   default: 2
