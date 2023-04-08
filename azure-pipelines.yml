@@ -57,6 +57,7 @@ resources:
     
 stages:
 - ${{ each parameter in parameters }}:
+- ${{ if eq(parameter.Value, true) }}:
   - stage: ${{ parameter.Key }}
     dependsOn: []
     jobs:
