@@ -68,7 +68,7 @@ stages:
   - job: A 
     steps:
     - ${{ each parameter in parameters }}:
-      - script: echo ${{ parameter.Key }} ${{parameter.Value}}
+      - script: echo ${{ parameter.Key }}
   - job: B
     steps:
     - ${{ each fruit in parameters.listOfFruits }} :
