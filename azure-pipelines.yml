@@ -59,18 +59,16 @@ resources:
 
   - container: u20
     image: maven
-parameters:
 
 
     
 stages:
-
 - stage: test
   jobs:
   - job: A 
     steps:
     - ${{ each parameter in parameters }}:
-      - script: echo ${{ parameter.key }} ${{parameter.value}}
+      - script: echo '${{ parameter.Key }} ${{parameter.Value}}''
   - job: B
     steps:
     - ${{ each fruit in parameters.listOfFruits }} :
