@@ -6,63 +6,36 @@
 trigger:
 - main
 parameters:
-- name: template_1
-  displayName: Copy virtual machine template 1
+- name: aks
+  displayName: Trigger AKS Pipeline
   type: boolean
-- name: template_2
-  displayName: Copy virtual machine template 2
+- name: adf
+  displayName: Trigger ADF Pipeline
   type: boolean
-- name: ChangePasswordTests
-  displayName: ChangePasswordTests
-  type: string
-  default: Disabled
-  values:
-    - Enabled
-    - Disabled
-
-- name: ScratchCardsTests
-  displayName: ScratchCardsTests
-  type: string
-  default: Disabled
-  values:
-    - Enabled
-    - Disabled
-    
-- name: listOfFruits
-  type: object
-  default:
-  - fruitName: 'apple'
-    colors: ['red','green']
-  - fruitName: 'lemon'
-    colors: ['yellow']
-- name: myNumber
-  type: number
-  default: 2
-  values:
-  - 1
-  - 2
-  - 4
-  - 8
-  - 16
-- name: myObject
-  type: object
-  default:
-    foo: FOO
-    bar: BAR
-    things:
-    - one
-    - two
-    - three
-    nested:
-      one: apple
-      two: pear
-      count: 3
-- name: myMultiString
-  type: string
-  default: default
-  values:
-  - default
-  - ubuntu
+- name: servicebus
+  displayName: Trigger ServiceBus Pipeline
+  type: boolean
+- name: signalr
+  displayName: Trigger SignalR Pipeline
+  type: boolean
+- name: postgresql
+  displayName: Trigger PostgresSQL Pipeline
+  type: boolean
+- name: cdn-profile
+  displayName: Trigger CDN-Profile Pipeline
+  type: boolean
+- name: appconfig
+  displayName: Trigger AppConfig Pipeline
+  type: boolean
+- name: cosmos
+  displayName: Trigger Cosmos Pipeline
+  type: boolean
+- name: apim
+  displayName: Trigger APIM Pipeline
+  type: boolean
+- name: app-insights
+  displayName: Trigger AppInsights Pipeline
+  type: boolean
 variables:
 
   # Agent VM image name
@@ -80,6 +53,9 @@ resources:
     image: maven
 
 stages:
+- ${{ each parameter in parameters }}:
+  - stage: ${{ parameter }}
+
 - stage: aks
   jobs:
   - job: MavenPackageAndPublishArtifacts
