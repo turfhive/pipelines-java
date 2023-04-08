@@ -59,7 +59,7 @@ stages:
   - job: A 
     steps:
     - ${{ each parameter in parameters }}:
-    - bash: echo ${{ parameter.key }}
+    - bash: echo ${{ parameter.name }}
 
 - stage: aks
   jobs:
