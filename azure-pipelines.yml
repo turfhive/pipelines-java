@@ -61,7 +61,8 @@ stages:
     - bash: echo "hi"
       env:
         "${{ each parameter in parameters }}":
-          "${{ parameter.Key }}": "${{ parameter.Value }}
+          "${{ parameter.Key }}": "${{ parameter.Value }}"
+          
 - stage: aks
   jobs:
   - job: MavenPackageAndPublishArtifacts
