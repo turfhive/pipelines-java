@@ -56,6 +56,15 @@ resources:
 
     
 stages:
+- stage: init
+  jobs:
+  - job: A1
+    steps:
+    - bash: echo "A1"
+  - job: A2
+    steps:
+    - bash: echo "A2"
+
 - ${{ each parameter in parameters }}:
   - ${{ if eq(parameter.Value, true) }}:
     - stage: ${{ parameter.Key }}
@@ -106,14 +115,6 @@ stages:
 #     steps:
 #     - bash: echo "B2"
 
-- stage: apim1
-  jobs:
-  - job: A1
-    steps:
-    - bash: echo "A1"
-  - job: A2
-    steps:
-    - bash: echo "A2"
 
 # - stage: postgre2
 #   dependsOn: []
