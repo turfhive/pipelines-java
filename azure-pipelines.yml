@@ -36,13 +36,6 @@ parameters:
 - name: app-insights
   displayName: Trigger AppInsights Pipeline
   type: boolean
-- name: listOfFruits
-  type: object
-  default:
-  - fruitName: 'apple'
-    colors: ['red','green']
-  - fruitName: 'lemon'
-    colors: ['yellow']
 
 variables:
 
@@ -76,11 +69,6 @@ stages:
     steps:
     - ${{ each parameter in parameters }}:
       - script: echo ${{ parameter.Key }}
-  - job: B
-    steps:
-    - ${{ each fruit in parameters.listOfFruits }} :
-      - ${{ each fruitColor in fruit.colors}} :
-        - script: echo ${{ fruit.fruitName}} ${{ fruitColor }}
 
 - stage: aks1
   jobs:
