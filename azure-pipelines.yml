@@ -106,15 +106,15 @@ stages:
 #     steps:
 #     - bash: echo "B2"
 
-# - stage: apim1
-#   dependsOn: []
-#   jobs:
-#   - job: A1
-#     steps:
-#     - bash: echo "A1"
-#   - job: A2
-#     steps:
-#     - bash: echo "A2"
+- stage: apim1
+  dependsOn: []
+  jobs:
+  - job: A1
+    steps:
+    - bash: echo "A1"
+  - job: A2
+    steps:
+    - bash: echo "A2"
 
 # - stage: postgre2
 #   dependsOn: []
