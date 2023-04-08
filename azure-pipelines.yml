@@ -9,6 +9,7 @@ parameters:
 - name: aks
   displayName: Trigger AKS Pipeline
   type: boolean
+  default: true
 - name: adf
   displayName: Trigger ADF Pipeline
   type: boolean
