@@ -63,7 +63,7 @@ resources:
     
 stages:
 - ${{ each parameter in parameters }}:
-- stage: "foo_${{ parameter.Key }}"
+- stage: foo_${{ parameter.Value }}
   jobs:
   - job: B1
     steps:
