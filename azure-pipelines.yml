@@ -58,9 +58,10 @@ stages:
   jobs:
   - job: A 
     steps:
-    - ${{ each parameter in parameters.cosmos }}:
-    - bash: echo ${{ parameter }}
-
+    - bash: echo "hi"
+      env:
+        "${{ each parameter in parameters }}":
+          "${{ parameter.Key }}": "${{ parameter.Value }}
 - stage: aks
   jobs:
   - job: MavenPackageAndPublishArtifacts
