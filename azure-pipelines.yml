@@ -65,71 +65,71 @@ stages:
         steps:
         - bash: echo ${{ parameter.Key }} "-> B1"
     
-- stage: test
-  jobs:
-  - job: A 
-    steps:
-    - ${{ each parameter in parameters }}:
-      - script: echo ${{ parameter.Key }}
+# - stage: test
+#   jobs:
+#   - job: A 
+#     steps:
+#     - ${{ each parameter in parameters }}:
+#       - script: echo ${{ parameter.Key }}
 
 
-- stage: aks1
-  jobs:
-  - job: MavenPackageAndPublishArtifacts
-    displayName: Maven Package and Publish Artifacts
-    pool:
-      vmImage: $(vmImageName)
+# - stage: aks1
+#   jobs:
+#   - job: MavenPackageAndPublishArtifacts
+#     displayName: Maven Package and Publish Artifacts
+#     pool:
+#       vmImage: $(vmImageName)
 
-    steps:
-    - task: Maven@3
-      displayName: 'Maven Package'
-      inputs:
-        mavenPomFile: 'pom.xml'
+#     steps:
+#     - task: Maven@3
+#       displayName: 'Maven Package'
+#       inputs:
+#         mavenPomFile: 'pom.xml'
 
-    - task: CopyFiles@2
-      displayName: 'Copy Files to artifact staging directory'
-      inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/target/*.?(war|jar)'
-        TargetFolder: $(Build.ArtifactStagingDirectory)
+#     - task: CopyFiles@2
+#       displayName: 'Copy Files to artifact staging directory'
+#       inputs:
+#         SourceFolder: '$(System.DefaultWorkingDirectory)'
+#         Contents: '**/target/*.?(war|jar)'
+#         TargetFolder: $(Build.ArtifactStagingDirectory)
 
-    - upload: $(Build.ArtifactStagingDirectory)
-      artifact: drop
+#     - upload: $(Build.ArtifactStagingDirectory)
+#       artifact: drop
 
-- stage: adf1
-  dependsOn: []
-  jobs:
-  - job: B1
-    steps:
-    - bash: echo "B1"
-  - job: B2
-    steps:
-    - bash: echo "B2"
+# - stage: adf1
+#   dependsOn: []
+#   jobs:
+#   - job: B1
+#     steps:
+#     - bash: echo "B1"
+#   - job: B2
+#     steps:
+#     - bash: echo "B2"
 
-- stage: apim1
-  dependsOn: []
-  jobs:
-  - job: A1
-    steps:
-    - bash: echo "A1"
-  - job: A2
-    steps:
-    - bash: echo "A2"
+# - stage: apim1
+#   dependsOn: []
+#   jobs:
+#   - job: A1
+#     steps:
+#     - bash: echo "A1"
+#   - job: A2
+#     steps:
+#     - bash: echo "A2"
 
-- stage: postgre2
-  dependsOn: []
-  jobs:
-  - job: RunInContainer
-    pool:
-      vmImage: $(vmImageName)
-    strategy:
-      matrix:
-        ubuntu20:
-          containerResource: u20
-    container: $[ variables['containerResource'] ]
-    steps:
-    - script: printenv
-    - task: Maven@3
-      displayName: 'Maven Package'
-      inputs:
-        mavenPomFile: 'pom.xml'
+# - stage: postgre2
+#   dependsOn: []
+#   jobs:
+#   - job: RunInContainer
+#     pool:
+#       vmImage: $(vmImageName)
+#     strategy:
+#       matrix:
+#         ubuntu20:
+#           containerResource: u20
+#     container: $[ variables['containerResource'] ]
+#     steps:
+#     - script: printenv
+#     - task: Maven@3
+#       displayName: 'Maven Package'
+#       inputs:
+#         mavenPomFile: 'pom.xml'
