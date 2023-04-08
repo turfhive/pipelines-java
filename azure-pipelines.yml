@@ -58,8 +58,8 @@ stages:
   jobs:
   - job: A 
     steps:
-    - ${{ each parameter in parameters }}:
-    - bash: echo ${{ parameter.name }}
+    - ${{ each parameter in parameters.cosmos }}:
+    - bash: echo ${{ parameter }}
 
 - stage: aks
   jobs:
