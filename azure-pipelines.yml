@@ -6,6 +6,28 @@
 trigger:
 - main
 parameters:
+- name: template_1
+  displayName: Copy virtual machine template 1
+  type: boolean
+- name: template_2
+  displayName: Copy virtual machine template 2
+  type: boolean
+- name: ChangePasswordTests
+  displayName: ChangePasswordTests
+  type: string
+  default: Disabled
+  values:
+    - Enabled
+    - Disabled
+
+- name: ScratchCardsTests
+  displayName: ScratchCardsTests
+  type: string
+  default: Disabled
+  values:
+    - Enabled
+    - Disabled
+    
 - name: listOfFruits
   type: object
   default:
