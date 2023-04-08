@@ -54,7 +54,7 @@ resources:
 
 stages:
 - ${{ each parameter in parameters }}:
-  - stage: ${{ parameter.value }}
+  - stage: ${{ parameter.key }}
 
 - stage: aks
   jobs:
