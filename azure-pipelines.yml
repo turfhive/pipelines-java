@@ -53,8 +53,13 @@ resources:
     image: maven
 
 stages:
+
+- stage: test
+  jobs:
+  - job: A 
+    steps:
 - ${{ each parameter in parameters }}:
-  - stage: ${{ parameter.key }}
+    - bash: echo ${{ parameter.key }}
 
 - stage: aks
   jobs:
