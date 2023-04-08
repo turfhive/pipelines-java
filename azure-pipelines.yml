@@ -6,42 +6,36 @@
 trigger:
 - main
 parameters:
-  - name: foo
-    type: string
-    default: bar
-  - name: foo1
-    type: string
-    default: bar1
-# - name: aks
-#   displayName: Trigger AKS Pipeline
-#   type: boolean
-# - name: adf
-#   displayName: Trigger ADF Pipeline
-#   type: boolean
-# - name: servicebus
-#   displayName: Trigger ServiceBus Pipeline
-#   type: boolean
-# - name: signalr
-#   displayName: Trigger SignalR Pipeline
-#   type: boolean
-# - name: postgresql
-#   displayName: Trigger PostgresSQL Pipeline
-#   type: boolean
-# - name: cdn-profile
-#   displayName: Trigger CDN-Profile Pipeline
-#   type: boolean
-# - name: appconfig
-#   displayName: Trigger AppConfig Pipeline
-#   type: boolean
-# - name: cosmos
-#   displayName: Trigger Cosmos Pipeline
-#   type: boolean
-# - name: apim
-#   displayName: Trigger APIM Pipeline
-#   type: boolean
-# - name: app-insights
-#   displayName: Trigger AppInsights Pipeline
-#   type: boolean
+- name: aks
+  displayName: Trigger AKS Pipeline
+  type: boolean
+- name: adf
+  displayName: Trigger ADF Pipeline
+  type: boolean
+- name: servicebus
+  displayName: Trigger ServiceBus Pipeline
+  type: boolean
+- name: signalr
+  displayName: Trigger SignalR Pipeline
+  type: boolean
+- name: postgresql
+  displayName: Trigger PostgresSQL Pipeline
+  type: boolean
+- name: cdn-profile
+  displayName: Trigger CDN-Profile Pipeline
+  type: boolean
+- name: appconfig
+  displayName: Trigger AppConfig Pipeline
+  type: boolean
+- name: cosmos
+  displayName: Trigger Cosmos Pipeline
+  type: boolean
+- name: apim
+  displayName: Trigger APIM Pipeline
+  type: boolean
+- name: app-insights
+  displayName: Trigger AppInsights Pipeline
+  type: boolean
 
 variables:
 
@@ -59,9 +53,11 @@ resources:
   - container: u20
     image: maven
 
+
+    
 stages:
 - ${{ each parameter in parameters }}:
-- stage: ${{ parameter.Name }}
+- stage: ${{ parameter.Key }}
   jobs:
   - job: B1
     steps:
