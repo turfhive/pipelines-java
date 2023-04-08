@@ -21,7 +21,7 @@ parameters:
 - name: postgresql
   displayName: Trigger PostgresSQL Pipeline
   type: boolean
-- name: cdn-profile
+- name: cdnprofile
   displayName: Trigger CDN-Profile Pipeline
   type: boolean
 - name: appconfig
@@ -33,7 +33,7 @@ parameters:
 - name: apim
   displayName: Trigger APIM Pipeline
   type: boolean
-- name: app-insights
+- name: appinsights
   displayName: Trigger AppInsights Pipeline
   type: boolean
 
