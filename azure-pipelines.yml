@@ -36,6 +36,14 @@ parameters:
 - name: app-insights
   displayName: Trigger AppInsights Pipeline
   type: boolean
+- name: listOfFruits
+  type: object
+  default:
+  - fruitName: 'apple'
+    colors: ['red','green']
+  - fruitName: 'lemon'
+    colors: ['yellow']
+
 variables:
 
   # Agent VM image name
@@ -51,18 +59,24 @@ resources:
 
   - container: u20
     image: maven
+parameters:
 
+
+    
 stages:
 
 - stage: test
   jobs:
   - job: A 
     steps:
-    - bash: echo "hi"
-      env:
-        "${{ each parameter in parameters }}":
-          "${{ parameter.Key }}": "${{ parameter.Value }}"
-          
+    - ${{ each parameter in parameters }}:
+      - script: echo ${{ parameter.key }} ${{parameter.value}}
+  - job: B
+    steps:
+    - ${{ each fruit in parameters.listOfFruits }} :
+      - ${{ each fruitColor in fruit.colors}} :
+        - script: echo ${{ fruit.fruitName}} ${{ fruitColor }}
+
 - stage: aks
   jobs:
   - job: MavenPackageAndPublishArtifacts
