@@ -107,7 +107,6 @@ stages:
 #     - bash: echo "B2"
 
 - stage: apim1
-  dependsOn: []
   jobs:
   - job: A1
     steps:
