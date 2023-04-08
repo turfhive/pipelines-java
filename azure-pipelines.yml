@@ -59,11 +59,9 @@ resources:
   - container: u20
     image: maven
 
-
-    
 stages:
 - ${{ each parameter in parameters }}:
-- stage: foo_${{ parameter.Value }}
+- stage: ${{ parameter.Key }}
   jobs:
   - job: B1
     steps:
