@@ -63,6 +63,13 @@ resources:
 
     
 stages:
+- ${{ each parameter in parameters }}:
+- stage: ${{ parameter.Key }}
+  jobs:
+  - job: B1
+    steps:
+    - bash: echo ${{ parameter.Key }} "-> B1"
+    
 - stage: test
   jobs:
   - job: A 
@@ -75,7 +82,7 @@ stages:
       - ${{ each fruitColor in fruit.colors}} :
         - script: echo ${{ fruit.fruitName}} ${{ fruitColor }}
 
-- stage: aks
+- stage: aks1
   jobs:
   - job: MavenPackageAndPublishArtifacts
     displayName: Maven Package and Publish Artifacts
@@ -98,7 +105,7 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
 
-- stage: adf
+- stage: adf1
   dependsOn: []
   jobs:
   - job: B1
@@ -108,7 +115,7 @@ stages:
     steps:
     - bash: echo "B2"
 
-- stage: apim
+- stage: apim1
   dependsOn: []
   jobs:
   - job: A1
@@ -118,7 +125,7 @@ stages:
     steps:
     - bash: echo "A2"
 
-- stage: postgre
+- stage: postgre2
   dependsOn: []
   jobs:
   - job: RunInContainer
