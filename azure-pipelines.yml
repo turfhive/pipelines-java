@@ -57,11 +57,11 @@ resources:
     
 stages:
 - ${{ each parameter in parameters }}:
-- stage: ${{ parameter.Key }}
-  jobs:
-  - job: B1
-    steps:
-    - bash: echo ${{ parameter.Key }} "-> B1"
+  - stage: ${{ parameter.Key }}
+    jobs:
+    - job: B1
+      steps:
+      - bash: echo ${{ parameter.Key }} "-> B1"
     
 - stage: test
   jobs:
